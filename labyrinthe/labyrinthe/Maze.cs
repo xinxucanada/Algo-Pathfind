@@ -568,18 +568,24 @@ namespace labyrinthe
             SaveWallH();
             SaveWallV();
         }
+        public void LoadWall()
+        {
+            LoadWallH();
+            LoadWallV();
+        }
 
         public void SaveWallH()
         {
             using (StreamWriter sw = new StreamWriter("C:\\Users\\e2194517\\Documents\\GitHub\\labo3Algo\\WallH.txt"))
             {
-                for(int i = 0; i <= rows; i++)
+                sw.WriteLine(rows);
+                sw.WriteLine(cols);
+                for (int i = 0; i <= rows; i++)
                 {
                     for(int j = 0; j < cols; j++)
                     {
-                        sw.Write(wallH[i, j] + ",");
+                        sw.WriteLine(wallH[i, j]);
                     }
-                    sw.WriteLine();
                 }
             }
         }
@@ -587,13 +593,14 @@ namespace labyrinthe
         {
             using (StreamWriter sw = new StreamWriter("C:\\Users\\e2194517\\Documents\\GitHub\\labo3Algo\\WallV.txt"))
             {
+                sw.WriteLine(rows);
+                sw.WriteLine(cols);
                 for (int i = 0; i < rows; i++)
                 {
                     for (int j = 0; j <= cols; j++)
                     {
-                        sw.Write(wallV[i, j] + ",");
+                        sw.WriteLine(wallV[i, j]);
                     }
-                    sw.WriteLine();
                 }
             }
         }
@@ -605,12 +612,15 @@ namespace labyrinthe
                 // using 语句也能关闭 StreamReader
                 using (StreamReader sr = new StreamReader("C:\\Users\\e2194517\\Documents\\GitHub\\labo3Algo\\WallH.txt"))
                 {
-                    string line1;
-
+                    rows = Convert.ToInt32(sr.ReadLine());
+                    cols = Convert.ToInt32(sr.ReadLine());
                     // 从文件读取并显示行，直到文件的末尾 
-                    while ((line1 = sr.ReadLine()) != null)
+                    for (int i = 0; i <= rows; i++)
                     {
-                        Console.WriteLine(line1);
+                        for (int j = 0; j < cols; j++)
+                        {
+                            wallH[i, j] = Convert.ToInt32(sr.ReadLine());
+                        }
                     }
                 }
             }
@@ -623,7 +633,30 @@ namespace labyrinthe
         }
         public void LoadWallV()
         {
-
+            try
+            {
+                // 创建一个 StreamReader 的实例来读取文件 
+                // using 语句也能关闭 StreamReader
+                using (StreamReader sr = new StreamReader("C:\\Users\\e2194517\\Documents\\GitHub\\labo3Algo\\WallV.txt"))
+                {
+                    rows = Convert.ToInt32(sr.ReadLine());
+                    cols = Convert.ToInt32(sr.ReadLine());
+                    // 从文件读取并显示行，直到文件的末尾 
+                    for (int i = 0; i < rows; i++)
+                    {
+                        for (int j = 0; j <= cols; j++)
+                        {
+                            wallV[i, j] = Convert.ToInt32(sr.ReadLine());
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                // 向用户显示出错消息
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }

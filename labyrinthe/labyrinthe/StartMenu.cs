@@ -12,8 +12,8 @@ namespace labyrinthe
 {
     public partial class StartMenu : Form
     {
-        public static int rows;
-        public static int cols;
+        public static int rows = 1;
+        public static int cols = 1;
         public StartMenu()
         {
             InitializeComponent();
@@ -30,10 +30,17 @@ namespace labyrinthe
             }
             catch (Exception)
             {
-                rows = 12;
-                cols = 12;
+                rows = 3;
+                cols = 3;
             }
             new MapLabirinthe().Show();
+            this.Hide();
+        }
+
+        private void RdFacile_CheckedChanged(object sender, EventArgs e)
+        {
+            new MapLabirinthe().Show();
+            GameObjectManager.LoadMap();
             this.Hide();
         }
     }

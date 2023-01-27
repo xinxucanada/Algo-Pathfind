@@ -57,7 +57,10 @@ namespace labyrinthe
         {
             maze.SaveWall();
         }
-
+        public static void LoadMap()
+        {
+            maze.LoadWall();
+        }
 
     }
 }

@@ -117,5 +117,10 @@ namespace labyrinthe
         {
             GameObjectManager.SaveMap();
         }
+
+        private void BtnLoad_Click(object sender, EventArgs e)
+        {
+            GameObjectManager.LoadMap();
+        }
     }
 }
