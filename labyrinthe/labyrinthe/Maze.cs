@@ -227,7 +227,7 @@ namespace labyrinthe
         }
 		public void dfs(int x, int y)
 		{
-            Thread.Sleep(1000 / 200);
+            //Thread.Sleep(1000 / 200);
             //Console.WriteLine($"dfs  x{x} y{y}  col{cols} row{rows} {x == cols - 1 && y == rows - 1}");
             Carre carreCurrent = map[y, x];
             CurrentSteps = carreCurrent.step;
@@ -355,9 +355,9 @@ namespace labyrinthe
 				// 向四个方向试探 i = 0..3 代表右下左上
 				for (int i = 0; i < 4; i++)
 				{
-					//Thread.Sleep(1);
-					//                如果左右方向就检测垂直墙
-					if (i % 2 == 0)
+                    Thread.Sleep(1);
+                    //                如果左右方向就检测垂直墙
+                    if (i % 2 == 0)
 					{
 						if (wallV[carreCurrent.y + dwy[i], carreCurrent.x + dwx[i]] == 0)
 						{ //墙为空则继续试探
@@ -432,9 +432,9 @@ namespace labyrinthe
 				//map[currentCarre.y][currentCarre.x].status = Status.visited; //否则, 将弹出点设为已探索
 				for (int i = 0; i < 4; i++)
 				{
-					//Thread.Sleep(1);
-					//                如果左右方向就检测垂直墙
-					if (i % 2 == 0)
+                    Thread.Sleep(1);
+                    //                如果左右方向就检测垂直墙
+                    if (i % 2 == 0)
 					{
 						if (wallV[currentCarre.y + dwy[i], currentCarre.x + dwx[i]] == 0)
 						{ //墙为空则继续试探

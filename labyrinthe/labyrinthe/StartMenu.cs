@@ -22,9 +22,9 @@ namespace labyrinthe
         private void BtStart_Click(object sender, EventArgs e)
         {
             //rows = Convert.ToInt32(TbRows.Text);
-            rows = 100;
+            rows = 15;
             //cols = Convert.ToInt32(TbCols.Text);
-            cols = 100;
+            cols = 15;
             new MapLabirinthe().Show();
             this.Hide();
         }

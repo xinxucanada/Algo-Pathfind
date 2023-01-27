@@ -22,3 +22,14 @@ E:\csharp\labyrinthe\labyrinthe\obj\Debug\labyrinthe.csproj.GenerateResource.cac
 E:\csharp\labyrinthe\labyrinthe\obj\Debug\labyrinthe.csproj.CoreCompileInputs.cache
 E:\csharp\labyrinthe\labyrinthe\obj\Debug\labyrinthe.exe
 E:\csharp\labyrinthe\labyrinthe\obj\Debug\labyrinthe.pdb
+C:\Users\e2194517\Documents\GitHub\labo3Algo\labyrinthe\labyrinthe\bin\Debug\labyrinthe.exe.config
+C:\Users\e2194517\Documents\GitHub\labo3Algo\labyrinthe\labyrinthe\bin\Debug\labyrinthe.exe
+C:\Users\e2194517\Documents\GitHub\labo3Algo\labyrinthe\labyrinthe\bin\Debug\labyrinthe.pdb
+C:\Users\e2194517\Documents\GitHub\labo3Algo\labyrinthe\labyrinthe\obj\Debug\labyrinthe.csproj.AssemblyReference.cache
+C:\Users\e2194517\Documents\GitHub\labo3Algo\labyrinthe\labyrinthe\obj\Debug\labyrinthe.MapLabirinthe.resources
+C:\Users\e2194517\Documents\GitHub\labo3Algo\labyrinthe\labyrinthe\obj\Debug\labyrinthe.Properties.Resources.resources
+C:\Users\e2194517\Documents\GitHub\labo3Algo\labyrinthe\labyrinthe\obj\Debug\labyrinthe.StartMenu.resources
+C:\Users\e2194517\Documents\GitHub\labo3Algo\labyrinthe\labyrinthe\obj\Debug\labyrinthe.csproj.GenerateResource.cache
+C:\Users\e2194517\Documents\GitHub\labo3Algo\labyrinthe\labyrinthe\obj\Debug\labyrinthe.csproj.CoreCompileInputs.cache
+C:\Users\e2194517\Documents\GitHub\labo3Algo\labyrinthe\labyrinthe\obj\Debug\labyrinthe.exe
+C:\Users\e2194517\Documents\GitHub\labo3Algo\labyrinthe\labyrinthe\obj\Debug\labyrinthe.pdb
