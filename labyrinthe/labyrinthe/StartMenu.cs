@@ -21,10 +21,18 @@ namespace labyrinthe
 
         private void BtStart_Click(object sender, EventArgs e)
         {
-            //rows = Convert.ToInt32(TbRows.Text);
-            rows = 15;
-            //cols = Convert.ToInt32(TbCols.Text);
-            cols = 15;
+            try
+            {
+                rows = Convert.ToInt32(TbRows.Text);
+                //rows = 5;
+                cols = Convert.ToInt32(TbCols.Text);
+                //cols = 5;
+            }
+            catch (Exception)
+            {
+                rows = 12;
+                cols = 12;
+            }
             new MapLabirinthe().Show();
             this.Hide();
         }

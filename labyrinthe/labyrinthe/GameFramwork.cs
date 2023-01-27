@@ -20,11 +20,6 @@ namespace labyrinthe
 
         public static void start()
         {
-            //SoundManager.IniteSound();
-            //GameObjectManager.Start();
-            //GameObjectManager.CreateMap();
-            //GameObjectManager.CreateMyTank();
-            //SoundManager.PlayStart();
             GameObjectManager.Start();
         }
 

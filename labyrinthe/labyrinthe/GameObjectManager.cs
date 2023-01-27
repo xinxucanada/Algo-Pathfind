@@ -31,7 +31,11 @@ namespace labyrinthe
         {
             maze.aStar();
         }
-		public static void MapReset()
+        public static void PathDFSRapide()
+        {
+            maze.setWay();
+        }
+        public static void MapReset()
         {
             maze.setCarre();
             maze.CurrentSteps = 0;
@@ -49,6 +53,11 @@ namespace labyrinthe
 			maze.nbrVisite = 1;
 		}
 
+        public static void SaveMap()
+        {
+            maze.SaveWall();
+        }
 
-	}
+
+    }
 }

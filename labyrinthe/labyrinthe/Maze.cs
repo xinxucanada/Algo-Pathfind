@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
+using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace labyrinthe
 {
@@ -24,7 +27,7 @@ namespace labyrinthe
         public CarreFile<Carre> carreFile = new CarreFile<Carre>();
 		public MinPriorityQueue tryPoints;
 		public static Random rd = new Random();
-        public static int times;
+        //public static int times;
         public static int[] dx = { 1, 0, -1, 0 };
         public static int[] dy = { 0, 1, 0, -1 };
         public static int[] dwx = { 1, 0, 0, 0 };
@@ -73,7 +76,6 @@ namespace labyrinthe
 
 			//map[cols - 1, rows - 1].status = Status.meilleur;
         }
-
         public void setWallH()
         {
             for (int i = 0; i < rows + 1; i++)
@@ -473,6 +475,155 @@ namespace labyrinthe
 				}
 			}
 		}
+        public void setWay()
+        {
+            CurrentSteps = 0;
+            minSteps = N;
+            nbrVisite = 0;
+            map[0, 0].status = Status.vide;
+            setWay(0, 0);
+        }
+        public bool setWay(int x, int y)
+        {
+            Thread.Sleep(10);
+            CurrentSteps++;
+			//Console.WriteLine($"x:{x} y:{y} ");
+            if (map[rows - 1, cols - 1].status == Status.visited)
+            {
+				Console.WriteLine("FIni");
+				Console.WriteLine(map[rows - 1, cols - 1].step);
+                Carre currentCarre = map[rows - 1, cols - 1];
+                minSteps = 0;
+               for(int i = 0; i < rows; i++)
+                {
+                    for(int j = 0; j < cols; j++)
+                    {
+                        if (map[i, j].status == Status.visited)
+                        {
+                            minSteps++;
+                            map[i, j].status = Status.meilleur;
+                        }
+                    }
+                }
 
-	}
+                return true;
+            }
+
+            if (map[y, x].status == Status.vide)
+            {
+                map[y, x].status = Status.visited;
+                nbrVisite++;
+                if (wallH[y + 1, x] != 1)
+                {
+                    map[y + 1, x].step = map[y, x].step + 1;
+             
+					if (setWay(x, y + 1)) 
+					{
+						map[y + 1, x].pre = map[y, x];
+                        //map[y + 1, x].step = map[y, x].step + 1;
+                        return true;
+                    } 
+                }
+                if (wallV[y, x + 1] != 1)
+                {
+                    map[y, x + 1].step = map[y, x].step + 1;
+                    if (setWay(x + 1, y))
+                    {
+                        map[y, x + 1].pre = map[y, x];
+                        //map[y, x + 1].step = map[y, x].step + 1;
+                        return true;
+                    }
+                }
+                if (wallH[y, x] != 1)
+                {
+                    map[y - 1, x].step = map[y, x].step + 1;
+                    if (setWay(x, y - 1))
+                    {
+                        map[y - 1, x].pre = map[y, x];
+                        //map[y - 1, x].step = map[y, x].step + 1;
+                        return true;
+                    }
+                }
+                if (wallV[y, x] != 1)
+                {
+                    map[y, x - 1].step = map[y, x].step + 1;
+                    if (setWay(x - 1, y))
+                    {
+                        map[y, x - 1].pre = map[y, x];
+                        //map[y, x - 1].step = map[y, x].step + 1;
+                        return true;
+                    }
+                }
+                map[y,x].status = Status.mort;
+                return false;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void SaveWall()
+        {
+            SaveWallH();
+            SaveWallV();
+        }
+
+        public void SaveWallH()
+        {
+            using (StreamWriter sw = new StreamWriter("C:\\Users\\e2194517\\Documents\\GitHub\\labo3Algo\\WallH.txt"))
+            {
+                for(int i = 0; i <= rows; i++)
+                {
+                    for(int j = 0; j < cols; j++)
+                    {
+                        sw.Write(wallH[i, j] + ",");
+                    }
+                    sw.WriteLine();
+                }
+            }
+        }
+        public void SaveWallV()
+        {
+            using (StreamWriter sw = new StreamWriter("C:\\Users\\e2194517\\Documents\\GitHub\\labo3Algo\\WallV.txt"))
+            {
+                for (int i = 0; i < rows; i++)
+                {
+                    for (int j = 0; j <= cols; j++)
+                    {
+                        sw.Write(wallV[i, j] + ",");
+                    }
+                    sw.WriteLine();
+                }
+            }
+        }
+        public void LoadWallH()
+        {
+            try
+            {
+                // 创建一个 StreamReader 的实例来读取文件 
+                // using 语句也能关闭 StreamReader
+                using (StreamReader sr = new StreamReader("C:\\Users\\e2194517\\Documents\\GitHub\\labo3Algo\\WallH.txt"))
+                {
+                    string line1;
+
+                    // 从文件读取并显示行，直到文件的末尾 
+                    while ((line1 = sr.ReadLine()) != null)
+                    {
+                        Console.WriteLine(line1);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                // 向用户显示出错消息
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(e.Message);
+            }
+        }
+        public void LoadWallV()
+        {
+
+        }
+    }
 }

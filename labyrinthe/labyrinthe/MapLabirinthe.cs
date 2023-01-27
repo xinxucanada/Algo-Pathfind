@@ -20,13 +20,17 @@ namespace labyrinthe
         public MapLabirinthe()
         {
             InitializeComponent();
+
+            if (StartMenu.rows > 12 || StartMenu.cols > 12)
+            {
+                BtnDFS.Enabled = false;
+            }
             Console.WriteLine(StartMenu.rows);
             Console.WriteLine(StartMenu.cols);
             WindowG = this.CreateGraphics(); // create graphic in gamewindow
 
             tempBmp = new Bitmap(1200, 1000); // create bitmap for game show
-            //finalBmp = new Bitmap(1000, 1000); 
-            //WindowG = Graphics.FromImage(finalBmp);
+            
             Graphics bmpG = Graphics.FromImage(tempBmp); //create graphic from bitmap
 
             GameFramwork.g = bmpG;  // give empty graphic to gameframework for drawing
@@ -103,5 +107,15 @@ namespace labyrinthe
 		{
 			GameObjectManager.PathAStar();
 		}
-	}
+
+        private void BtRecursion_Click(object sender, EventArgs e)
+        {
+            GameObjectManager.PathDFSRapide();
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            GameObjectManager.SaveMap();
+        }
+    }
 }
