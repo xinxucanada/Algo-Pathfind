@@ -21,10 +21,10 @@ namespace labyrinthe
         {
             InitializeComponent();
 
-            if (StartMenu.rows > 12 || StartMenu.cols > 12)
-            {
-                BtnDFS.Enabled = false;
-            }
+            //if (StartMenu.rows > 12 || StartMenu.cols > 12)
+            //{
+            //    BtnDFS.Enabled = false;
+            //}
             Console.WriteLine(StartMenu.rows);
             Console.WriteLine(StartMenu.cols);
             WindowG = this.CreateGraphics(); // create graphic in gamewindow

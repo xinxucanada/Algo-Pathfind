@@ -278,12 +278,12 @@ namespace labyrinthe
 						int nextX = carreCurrent.x + dx[i];
 						int nextY = carreCurrent.y + dy[i];
                         //Console.WriteLine($"nextY: {nextY}, nextX: {nextX}");
-						if (map[nextY, nextX].status == Status.vide || map[nextY, nextX].status == Status.essay)
-						{ // 如果未被试探过
-                            if (map[nextY, nextX].status == Status.vide)
-                            {
-                                nbrVisite++;
-                            }
+						if (map[nextY, nextX].status == Status.vide || (map[nextY, nextX].status == Status.essay && map[nextY, nextX].step > carreCurrent.step + 1))
+						{ // 如果未被试探过 或被探测过但步数大于本次试探的步数
+							if (map[nextY, nextX].status == Status.vide)
+							{
+								nbrVisite++;
+							}
 							map[nextY, nextX].status = Status.visited;
 							map[nextY, nextX].step = carreCurrent.step + 1;
 							map[nextY, nextX].pre = carreCurrent;
@@ -303,12 +303,13 @@ namespace labyrinthe
 						int nextY = carreCurrent.y + dy[i];
 					
 						//Console.WriteLine($"nextY: {nextY}, nextX: {nextX}");
-						if (map[nextY, nextX].status == Status.vide || map[nextY, nextX].status == Status.essay)
+						if (map[nextY, nextX].status == Status.vide || (map[nextY, nextX].status == Status.essay && map[nextY, nextX].step > carreCurrent.step + 1))
 						{ // 如果未被试探过
 							if (map[nextY, nextX].status == Status.vide)
 							{
 								nbrVisite++;
 							}
+							
 							map[nextY, nextX].status = Status.visited;
 							map[nextY, nextX].step = carreCurrent.step + 1;
 							map[nextY, nextX].pre = carreCurrent;
