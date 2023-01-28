@@ -229,7 +229,7 @@ namespace labyrinthe
         }
 		public void dfs(int x, int y)
 		{
-            //Thread.Sleep(1000 / 200);
+            if(cols <= 15 && rows <= 15) Thread.Sleep(1);
             //Console.WriteLine($"dfs  x{x} y{y}  col{cols} row{rows} {x == cols - 1 && y == rows - 1}");
             Carre carreCurrent = map[y, x];
             CurrentSteps = carreCurrent.step;
