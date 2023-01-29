@@ -35,7 +35,7 @@ namespace labyrinthe
         public static int[] dwy = { 0, 1, 0, 0 };
         public int width;
         public int height;
-		public static Pen redPen = new Pen(Color.Red, 2);
+		public static Pen redPen = new Pen(Color.Red, 4);
 		public static Pen greyPen = new Pen(Color.LightGray, 1);
 		public static SolidBrush whiteBrush = new SolidBrush(Color.White);
 		public static SolidBrush greenBrush = new SolidBrush(Color.Green);
@@ -599,7 +599,12 @@ namespace labyrinthe
                                 CurrentSteps++;
 								jouerCarre.y--;
                                 nbrVisite++;
-							}
+								map[Y, X].status = Status.visited;
+								SoundManager.PlayMove();
+							} else
+                            {
+                                SoundManager.PlayBlock();
+                            }
 								
 							break;
 						case Keys.Down:
@@ -608,8 +613,14 @@ namespace labyrinthe
                                 CurrentSteps++;
 								jouerCarre.y++;
 								nbrVisite++;
+								map[Y, X].status = Status.visited;
+								SoundManager.PlayMove();
 							}
-								
+							else
+							{
+								SoundManager.PlayBlock();
+							}
+
 							break;
 						case Keys.Right:
 							if (wallV[Y, X + 1] == 0)
@@ -617,6 +628,12 @@ namespace labyrinthe
 								CurrentSteps++;
 								jouerCarre.x++;
 								nbrVisite++;
+								map[Y, X].status = Status.visited;
+								SoundManager.PlayMove();
+							}
+							else
+							{
+								SoundManager.PlayBlock();
 							}
 							break;
 						case Keys.Left:
@@ -625,6 +642,12 @@ namespace labyrinthe
 								CurrentSteps++;
 								jouerCarre.x--;
 								nbrVisite++;
+								map[Y, X].status = Status.visited;
+								SoundManager.PlayMove();
+							}
+							else
+							{
+								SoundManager.PlayBlock();
 							}
 							break;
 					}

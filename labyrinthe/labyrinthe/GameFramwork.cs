@@ -21,7 +21,8 @@ namespace labyrinthe
         public static void start()
         {
             GameObjectManager.Start();
-        }
+			SoundManager.IniteSound();
+		}
 
         public static void update()
         {

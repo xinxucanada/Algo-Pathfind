@@ -65,7 +65,8 @@ namespace labyrinthe
         public static void Manuel()
         {
             maze.Manuel();
-        }
+			SoundManager.PlayStart();
+		}
         public static void KeyDown(KeyEventArgs e)
         {
             maze.KeyDown(e);
