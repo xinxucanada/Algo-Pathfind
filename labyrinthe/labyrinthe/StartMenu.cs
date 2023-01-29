@@ -30,8 +30,8 @@ namespace labyrinthe
             }
             catch (Exception)
             {
-                rows = 3;
-                cols = 3;
+                rows = 6;
+                cols = 6;
             }
             new MapLabirinthe().Show();
             this.Hide();

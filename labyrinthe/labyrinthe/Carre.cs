@@ -13,7 +13,8 @@ namespace labyrinthe
         visited,
         essay,
         mort,
-        meilleur
+        meilleur,
+        manuel
     }
     public class Carre
     {

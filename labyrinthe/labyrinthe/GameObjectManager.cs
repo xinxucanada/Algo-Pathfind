@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace labyrinthe
 {
@@ -61,6 +62,16 @@ namespace labyrinthe
         {
             maze.LoadWall();
         }
+        public static void Manuel()
+        {
+            maze.Manuel();
+        }
+        public static void KeyDown(KeyEventArgs e)
+        {
+            maze.KeyDown(e);
 
-    }
+		}
+
+
+	}
 }

@@ -26,6 +26,7 @@ namespace labyrinthe
         public int[,] wallV;
         public CarreFile<Carre> carreFile = new CarreFile<Carre>();
 		public MinPriorityQueue tryPoints;
+        public Carre jouerCarre;
 		public static Random rd = new Random();
         //public static int times;
         public static int[] dx = { 1, 0, -1, 0 };
@@ -41,8 +42,9 @@ namespace labyrinthe
 		public static SolidBrush blueBrush = new SolidBrush(Color.Blue);
 		public static SolidBrush blackBrush = new SolidBrush(Color.Black);
 		public static SolidBrush orangeBrush = new SolidBrush(Color.Orange);
-        public static SolidBrush[] brushs = {whiteBrush, greenBrush, blueBrush, blackBrush, orangeBrush};
-        
+		public static SolidBrush goldBrush = new SolidBrush(Color.Gold);
+        public static SolidBrush[] brushs = {whiteBrush, greenBrush, blueBrush, blackBrush, orangeBrush, goldBrush};
+        public bool jouerModel = false;
 
 
 		public Maze(int rows, int cols)
@@ -152,12 +154,20 @@ namespace labyrinthe
 
         public void DrawSelf()
         {
-            DrawCarres();
-            DrawWalls();
+			
+			DrawCarres();
+			DrawWalls();
+            if (jouerModel) DrawJouer();
             DrawScore();
 
         }
-        public void DrawScore()
+
+        public void DrawJouer()
+        {
+			Rectangle rectangle = new Rectangle(jouerCarre.x * width, jouerCarre.y * height, width, height);
+			GameFramwork.g.FillRectangle(brushs[(int)jouerCarre.status], rectangle);
+		}
+		public void DrawScore()
         {
 			GameFramwork.g.DrawString($"Minimal step: {GameObjectManager.maze.minSteps}", new Font("Arial", 12), new SolidBrush(Color.DarkOrange), new Point(950, 100));
 			GameFramwork.g.DrawString($"Current step: {GameObjectManager.maze.CurrentSteps}", new Font("Arial", 12), new SolidBrush(Color.DarkGreen), new Point(950, 150));
@@ -491,7 +501,7 @@ namespace labyrinthe
 			//Console.WriteLine($"x:{x} y:{y} ");
             if (map[rows - 1, cols - 1].status == Status.visited)
             {
-				Console.WriteLine("FIni");
+				Console.WriteLine("Fini");
 				Console.WriteLine(map[rows - 1, cols - 1].step);
                 Carre currentCarre = map[rows - 1, cols - 1];
                 minSteps = 0;
@@ -563,8 +573,74 @@ namespace labyrinthe
                 return false;
             }
         }
+        public void Manuel()
+        {
+            jouerModel = true;
+            //map[0, 0].status = Status.manuel;
+            jouerCarre = new Carre(0, 0, 0, null);
+            jouerCarre.status = Status.manuel;
+            CurrentSteps = 0;
+            nbrVisite = 0;
+        }
+        public void KeyDown(KeyEventArgs e)
+        {
+            if (jouerModel)
+            {
+				int X = jouerCarre.x;
+				int Y = jouerCarre.y;
+                map[Y, X].status = Status.manuel;
+				if (jouerModel)
+				{
+					switch (e.KeyCode)
+					{
+						case Keys.Up:
+							if (wallH[Y, X] == 0)
+                            {
+                                CurrentSteps++;
+								jouerCarre.y--;
+                                nbrVisite++;
+							}
+								
+							break;
+						case Keys.Down:
+							if (wallH[Y + 1, X] == 0)
+                            {
+                                CurrentSteps++;
+								jouerCarre.y++;
+								nbrVisite++;
+							}
+								
+							break;
+						case Keys.Right:
+							if (wallV[Y, X + 1] == 0)
+							{
+								CurrentSteps++;
+								jouerCarre.x++;
+								nbrVisite++;
+							}
+							break;
+						case Keys.Left:
+							if (wallV[Y, X] == 0)
+							{
+								CurrentSteps++;
+								jouerCarre.x--;
+								nbrVisite++;
+							}
+							break;
+					}
+                    if (jouerCarre.x == cols - 1 && jouerCarre.y == rows - 1)
+                    {
+                        Console.WriteLine("Tu gagne!");
+                        map[rows - 1, cols - 1].status = Status.manuel;
+                        minSteps = CurrentSteps;
+                        jouerModel = false;
+                    }
+				}
+			}
+        }
 
-        public void SaveWall()
+
+		public void SaveWall()
         {
             SaveWallH();
             SaveWallV();

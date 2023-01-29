@@ -20,12 +20,12 @@ namespace labyrinthe
         public MapLabirinthe()
         {
             InitializeComponent();
-
-            //if (StartMenu.rows > 12 || StartMenu.cols > 12)
-            //{
-            //    BtnDFS.Enabled = false;
-            //}
-            Console.WriteLine(StartMenu.rows);
+			this.KeyPreview = true;
+			//if (StartMenu.rows > 12 || StartMenu.cols > 12)
+			//{
+			//    BtnDFS.Enabled = false;
+			//}
+			Console.WriteLine(StartMenu.rows);
             Console.WriteLine(StartMenu.cols);
             WindowG = this.CreateGraphics(); // create graphic in gamewindow
 
@@ -122,5 +122,26 @@ namespace labyrinthe
         {
             GameObjectManager.LoadMap();
         }
-    }
+
+		private void BtnManuel_Click(object sender, EventArgs e)
+		{
+			GameObjectManager.Manuel();
+		}
+
+	
+
+		private void MapLabirinthe_KeyDown(object sender, KeyEventArgs e)
+		{
+            //Console.WriteLine(e.KeyCode.ToString());
+            //GameObjectManager.KeyDown(e);
+        }
+
+		private void MapLabirinthe_KeyUp(object sender, KeyEventArgs e)
+		{
+			//Console.WriteLine(e.KeyCode.ToString());
+			GameObjectManager.KeyDown(e);
+		}
+		
+
+	}
 }
