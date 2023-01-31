@@ -14,8 +14,8 @@ namespace labyrinthe
 {
     internal class Maze
     {
-        public static int ECRAN = 900;
-        public static int N = 65535;
+        public static int ECRAN = 900;  //grandeur d'ecran
+        public static int N = 65535;  // infinity
         public int minSteps = N;
         public int CurrentSteps = 0;
         public int nbrVisite = 1;
@@ -24,20 +24,19 @@ namespace labyrinthe
         public Carre[,] map;
         public int[,] wallH;
         public int[,] wallV;
-        public CarreFile<Carre> carreFile = new CarreFile<Carre>();
-		public MinPriorityQueue tryPoints;
+        public CarreFile<Carre> carreFile = new CarreFile<Carre>(); // structure file
+		public MinPriorityQueue tryPoints; // priority queue pour A*
         public Carre jouerCarre;
 		public static Random rd = new Random();
-        //public static int times;
-        public static int[] dx = { 1, 0, -1, 0 };
+        public static int[] dx = { 1, 0, -1, 0 }; //décalage des coordonnées de l'axe s x sur l'axe  y
         public static int[] dy = { 0, 1, 0, -1 };
         public static int[] dwx = { 1, 0, 0, 0 };
         public static int[] dwy = { 0, 1, 0, 0 };
-        public int width;
+        public int width; // taille de chaque carrée
         public int height;
-		public static Pen redPen = new Pen(Color.Red, 4);
+		public static Pen redPen = new Pen(Color.Red, 4); // crayon pour peintre les murs
 		public static Pen greyPen = new Pen(Color.LightGray, 1);
-		public static SolidBrush whiteBrush = new SolidBrush(Color.White);
+		public static SolidBrush whiteBrush = new SolidBrush(Color.White); //caryon pour peitre les carrées
 		public static SolidBrush greenBrush = new SolidBrush(Color.Green);
 		public static SolidBrush blueBrush = new SolidBrush(Color.Blue);
 		public static SolidBrush blackBrush = new SolidBrush(Color.Black);
@@ -49,6 +48,7 @@ namespace labyrinthe
 
 		public Maze(int rows, int cols)
         {
+            // initialiser labyrinthe selon nombre choisi par joueur
             this.rows = rows;
             this.cols = cols;
             this.map = new Carre[rows, cols];
@@ -59,12 +59,14 @@ namespace labyrinthe
 			setCarre();
             setWallH();
             setWallV();
-            blockDigui();
+            blockDigui(); //gerer les murs aléatoirement
             
         }
 
         public void setCarre()
         {
+
+            //initialiser les nodes(carrées) 
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < cols; j++)
@@ -72,12 +74,13 @@ namespace labyrinthe
                     this.map[i, j] = new Carre(j, i, N, null, (cols + rows - i - j - 2), Status.vide);
                 }
             }
+            // mettre le "start" comme step=0, status="visited"
             map[0, 0].status = Status.visited;
             map[0, 0].step = 0;
 
 
-			//map[cols - 1, rows - 1].status = Status.meilleur;
         }
+        // initialiser les murs horizontaux et virticaux 
         public void setWallH()
         {
             for (int i = 0; i < rows + 1; i++)
@@ -118,33 +121,32 @@ namespace labyrinthe
         }
         public void blockDigui(int x1, int y1, int x2, int y2)
         {
-            //分格过小则退出
+            //si le block est trop petit, on s'arrete
             if (x2 - x1 < 2 || y2 - y1 < 2)
             {
                 return;
             }
-            //随机取横竖分割线
+            //separer à 4 blocks aléatoirement
             int xM = rd.Next(x1 + 2, x2 + 1);
             int yM = rd.Next(y1 + 2, y2 + 1);
-            //分格地图
-            //横分割线
+            //mur horizonal
             for (int i = x1; i < x2 + 1; i++)
             {
                 wallH[yM, i] = 1;
             }
-            // 竖分割线
+            // mur virtical
             for (int i = y1; i < y2 + 1; i++)
             {
                 wallV[i, xM] = 1;
             }
-            // 在分隔线上挖3个洞
+            // creuser 3 trous pour assurer qu'on peut aller 4 blocks
             int xHole1 = rd.Next(x1, xM);
             int xHole2 = rd.Next(xM, x2 + 1);
             int yHole = rd.Next(y1, yM);
             wallH[yM, xHole1] = 0;
             wallH[yM, xHole2] = 0;
             wallV[yHole, xM] = 0;
-            // 递归调用在分区块内制造路障
+            // faire résursion
             blockDigui(x1, y1, xM - 1, yM - 1);
             blockDigui(xM, y1, x2, yM - 1);
             blockDigui(x1, yM, xM - 1, y2);
@@ -152,6 +154,7 @@ namespace labyrinthe
 
         }
 
+        // pentre labyrinthe
         public void DrawSelf()
         {
 			
@@ -159,7 +162,6 @@ namespace labyrinthe
 			DrawWalls();
             if (jouerModel) DrawJouer();
             DrawScore();
-
         }
 
         public void DrawJouer()
@@ -173,6 +175,7 @@ namespace labyrinthe
 			GameFramwork.g.DrawString($"Current step: {GameObjectManager.maze.CurrentSteps}", new Font("Arial", 12), new SolidBrush(Color.DarkGreen), new Point(950, 150));
 			GameFramwork.g.DrawString($"Carrés visitées: {GameObjectManager.maze.nbrVisite}", new Font("Arial", 12), new SolidBrush(Color.DarkBlue), new Point(950, 200));
 		}
+        //peintre carrée selon son status
         public void DrawCarres()
         {
             for(int i = 0; i < rows; i++)
@@ -213,7 +216,7 @@ namespace labyrinthe
 				}
 			}
 		}
-
+        //peintre la meilleure chemin
 		public void drawPath(Carre carre)
 		{
 			while (carre != null)
@@ -239,21 +242,16 @@ namespace labyrinthe
         }
 		public void dfs(int x, int y)
 		{
+            // si labyrinthe est trop grand on sleep pas
             if(cols <= 15 && rows <= 15) Thread.Sleep(1);
-            //Console.WriteLine($"dfs  x{x} y{y}  col{cols} row{rows} {x == cols - 1 && y == rows - 1}");
             Carre carreCurrent = map[y, x];
             CurrentSteps = carreCurrent.step;
+            // si carrée currante == sortir et la chemin est plus court que la derrière fois, on arrete et mettre la chemin dans file
 			if (x == cols - 1 && y == rows - 1)
 			{
-                //Console.WriteLine($"minSteps: {minSteps}");
-                //Console.WriteLine($"CurrenSteps: {carreCurrent.step}");
-                //Thread.Sleep(1000/12);
                 if (carreCurrent.step < minSteps)
                 {
                     minSteps = carreCurrent.step;
-                    
-					//Console.WriteLine($"minSteps: {minSteps}");
-					//Thread.Sleep(1000);
 					carreFile.clear();
                     carreFile.push(carreCurrent.copy());
                     while (carreCurrent.pre != null)
@@ -264,40 +262,29 @@ namespace labyrinthe
                     Console.WriteLine(minSteps + " steps===========================================================");
                     return;
                 }
-    //            carreFile.clear();
-				//carreFile.push(carreCurrent.copy());
-				//while (carreCurrent.pre != null)
-				//{
-				//	carreCurrent = carreCurrent.pre;
-				//	carreFile.push(carreCurrent);
-				//}
-				//Console.WriteLine(minSteps + " steps");
 				return;
 			}
-			//Console.WriteLine($"Current case: {carreCurrent.ToString()}");
 			for (int i = 0; i < 4; i++)
 			{
-				//                如果左右方向就检测垂直墙
+				// verifier les murs a gauche a droite
 				
 				if (i % 2 == 0)
 				{
-                    //Console.WriteLine($"WV: x-{carreCurrent.x + dwx[i]} y-{carreCurrent.y + dwy[i]} ");
-                    //Console.WriteLine(wallV[carreCurrent.y + dwy[i], carreCurrent.x + dwx[i]]);
 					if (wallV[carreCurrent.y + dwy[i], carreCurrent.x + dwx[i]] == 0)
-					{ //墙为空则继续试探
+					{ //si pas de mur, on continue
 						int nextX = carreCurrent.x + dx[i];
 						int nextY = carreCurrent.y + dy[i];
-                        //Console.WriteLine($"nextY: {nextY}, nextX: {nextX}");
 						if (map[nextY, nextX].status == Status.vide || (map[nextY, nextX].status == Status.essay && map[nextY, nextX].step > carreCurrent.step + 1))
-						{ // 如果未被试探过 或被探测过但步数大于本次试探的步数
+						{ // si carrée est jamais visitée, ou visitée mais steps plus grand que cette fois
 							if (map[nextY, nextX].status == Status.vide)
 							{
 								nbrVisite++;
 							}
+                            // le metttre comme visitée, step + 1, parent node = carree currente
 							map[nextY, nextX].status = Status.visited;
 							map[nextY, nextX].step = carreCurrent.step + 1;
 							map[nextY, nextX].pre = carreCurrent;
-                            //Console.WriteLine($"next case: { map[nextY, nextX].ToString()}");
+                            // faire récursion pour cette carrée
 							dfs(nextX, nextY);
 							map[nextY, nextX].status = Status.essay;
 						}
