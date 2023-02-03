@@ -67,6 +67,8 @@ namespace labyrinthe
             maze.Manuel();
 			SoundManager.PlayStart();
 		}
+
+        //test keyboard evenement
         public static void KeyDown(KeyEventArgs e)
         {
             maze.KeyDown(e);
