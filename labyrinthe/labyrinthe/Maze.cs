@@ -34,9 +34,9 @@ namespace labyrinthe
         public static int[] dwy = { 0, 1, 0, 0 };
         public int width; // taille de chaque carrée
         public int height;
-		public static Pen redPen = new Pen(Color.Red, 4); // crayon pour peintre les murs
+		public static Pen redPen = new Pen(Color.Red, 4); // crayon pour peindre les murs
 		public static Pen greyPen = new Pen(Color.LightGray, 1);
-		public static SolidBrush whiteBrush = new SolidBrush(Color.White); //caryon pour peitre les carrées
+		public static SolidBrush whiteBrush = new SolidBrush(Color.White); //caryon pour peindre les carrées
 		public static SolidBrush greenBrush = new SolidBrush(Color.Green);
 		public static SolidBrush blueBrush = new SolidBrush(Color.Blue);
 		public static SolidBrush blackBrush = new SolidBrush(Color.Black);
@@ -81,6 +81,7 @@ namespace labyrinthe
 
         }
         // initialiser les murs horizontaux et virticaux 
+        // tous les murs peuvent être traversés sauf ceux situés au périmètre
         public void setWallH()
         {
             for (int i = 0; i < rows + 1; i++)
@@ -175,7 +176,7 @@ namespace labyrinthe
 			GameFramwork.g.DrawString($"Current step: {GameObjectManager.maze.CurrentSteps}", new Font("Arial", 12), new SolidBrush(Color.DarkGreen), new Point(950, 150));
 			GameFramwork.g.DrawString($"Carrés visitées: {GameObjectManager.maze.nbrVisite}", new Font("Arial", 12), new SolidBrush(Color.DarkBlue), new Point(950, 200));
 		}
-        //peintre carrée selon son status
+        //peindre carrées selon leur état
         public void DrawCarres()
         {
             for(int i = 0; i < rows; i++)
@@ -216,7 +217,7 @@ namespace labyrinthe
 				}
 			}
 		}
-        //peintre la meilleure chemin
+        //peindre la meilleure chemin
 		public void drawPath(Carre carre)
 		{
 			while (carre != null)
@@ -226,6 +227,8 @@ namespace labyrinthe
 			}
             
 		}
+
+        // pour l'algorithme DFS, la meilleure chemine est sauvgardée dans une file
         public void drawPathDFS()
         {
             Carre carreCurrent;
@@ -274,8 +277,9 @@ namespace labyrinthe
 					{ //si pas de mur, on continue
 						int nextX = carreCurrent.x + dx[i];
 						int nextY = carreCurrent.y + dy[i];
+
 						if (map[nextY, nextX].status == Status.vide || (map[nextY, nextX].status == Status.essay && map[nextY, nextX].step > carreCurrent.step + 1))
-						{ // si carrée est jamais visitée, ou visitée mais steps plus grand que cette fois
+						{ // si carrée est jamais visitée, ou visitée mais steps plus grand que cette fois, on continue
 							if (map[nextY, nextX].status == Status.vide)
 							{
 								nbrVisite++;
@@ -291,17 +295,14 @@ namespace labyrinthe
 					}
 				}
 				else
-				{  //上下方法,检测水平墙
-					//Console.WriteLine($"WH: {carreCurrent.y + dwy[i]}: {carreCurrent.x + dwx[i]}");
-					//Console.WriteLine(wallH[carreCurrent.y + dwy[i], carreCurrent.x + dwx[i]]);
-					if (wallH[carreCurrent.y + dwy[i], carreCurrent.x + dwx[i]] == 0)
-					{ //墙为空则继续试探
+                {  //verifier les murs en haut et en bas
+                    if (wallH[carreCurrent.y + dwy[i], carreCurrent.x + dwx[i]] == 0)
+					{ 
 						int nextX = carreCurrent.x + dx[i];
 						int nextY = carreCurrent.y + dy[i];
 					
-						//Console.WriteLine($"nextY: {nextY}, nextX: {nextX}");
 						if (map[nextY, nextX].status == Status.vide || (map[nextY, nextX].status == Status.essay && map[nextY, nextX].step > carreCurrent.step + 1))
-						{ // 如果未被试探过
+						{ 
 							if (map[nextY, nextX].status == Status.vide)
 							{
 								nbrVisite++;
@@ -310,7 +311,6 @@ namespace labyrinthe
 							map[nextY, nextX].status = Status.visited;
 							map[nextY, nextX].step = carreCurrent.step + 1;
 							map[nextY, nextX].pre = carreCurrent;
-							//Console.WriteLine($"next case: {map[nextY, nextX].ToString()}");
 							dfs(nextX, nextY);
 							map[nextY, nextX].status = Status.essay;
 						}
@@ -329,42 +329,46 @@ namespace labyrinthe
 		}
 		public void bfs(int x, int y)
 		{
-			//定义右下上左格子和墙的位移变量
 
-			//创建队列保存需要对周边探索的点 *将file提到成员变量级别一遍其他函数调用, 寻找之前清空
+			//clear file pour s'assurer il est vide
 			carreFile.clear();
-            // 将起点压入队列,并置为已访问
+            // push "start" dans file
             map[y, x].status = Status.visited;
             carreFile.push(map[y, x]);
             Carre carreCurrent;
-			// 如果队列不为空则继续搜索
+			// si la file n'est pas vide, on continue
 			while (!carreFile.isEmpty())
 			{
-				//int currentX = file.peak().x;
-				//int currentY = file.peak().y;
-				//int currentStep = file.peak().step;
+                // pop une carrée comme carrée courrente
 				carreCurrent = carreFile.pop();
                 CurrentSteps = carreCurrent.step;
-				//如果当前节点为出口,则返回,并打印步数
+				//si carrée courrent égale "sortir", on s'arrête
 				if (carreCurrent.x == cols - 1 && carreCurrent.y == rows - 1)
 				{
+                    // pour bfs, dès qu'on trouve la chemin, c'est la meilleure chemin
+                    // donc on la peint
                     minSteps = carreCurrent.step;
 					drawPath(carreCurrent);
 					return;
 				}
-				// 向四个方向试探 i = 0..3 代表右下左上
+				// tester 4 directions
 				for (int i = 0; i < 4; i++)
 				{
                     Thread.Sleep(1);
-                    //                如果左右方向就检测垂直墙
+                    //  tester mur horizontal si on bouge à gauche à droite
                     if (i % 2 == 0)
 					{
 						if (wallV[carreCurrent.y + dwy[i], carreCurrent.x + dwx[i]] == 0)
-						{ //墙为空则继续试探
+						{ 
+                            // continur si le mur prut être traversé
 							int nextX = carreCurrent.x + dx[i];
 							int nextY = carreCurrent.y + dy[i];
 							if (map[nextY,nextX].status == Status.vide)
-							{ // 如果未被试探过
+							{ 
+                                // si cette carrée n'est jamais visitée
+                                // nombr visite plus 1, modifier son état comme visited
+                                // son node parent est carrée courrente
+                                // push cette carrée dans la file
                                 nbrVisite++;
 								map[nextY,nextX].status = Status.visited;
 								map[nextY,nextX].step = carreCurrent.step + 1;
@@ -374,13 +378,13 @@ namespace labyrinthe
 						}
 					}
 					else
-					{  //上下方法,检测水平墙
+					{  
 						if (wallH[carreCurrent.y + dwy[i], carreCurrent.x + dwx[i]] == 0)
-						{ //墙为空则继续试探
+						{ 
 							int nextX = carreCurrent.x + dx[i];
 							int nextY = carreCurrent.y + dy[i];
 							if (map[nextY, nextX].status == Status.vide)
-							{ // 如果未被试探过
+							{ 
                                 nbrVisite++; 
 								map[nextY, nextX].status = Status.visited;
 								map[nextY, nextX].step = carreCurrent.step + 1;
@@ -390,11 +394,11 @@ namespace labyrinthe
 						}
 					}
 				}
-				//file.pop();
 			}
-			//如果队列为空还没有到出口,则显示未找到
-			//System.out.println("Pas de chance");
-		}
+           // si la file est vide, c'est à dir qu'il n'y a pas de solution
+           // dans notre labyrithe, il y a tousjour au moins une solution
+           Console.WriteLine("Pas de chance");
+        }
 
 		public void aStar()
 		{
@@ -407,6 +411,7 @@ namespace labyrinthe
 		public void aStar(int x, int y)
 		{
 			Carre currentCarre;
+            // créer priotityqueue pour sauvegarder les carrées d'essai
 			tryPoints = new MinPriorityQueue(2 * (cols + rows));
 			tryPoints.Push(map[y, x]);
 			nbrVisite++;
