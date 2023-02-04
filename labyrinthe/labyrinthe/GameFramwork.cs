@@ -32,10 +32,6 @@ namespace labyrinthe
             {
                 GameObjectManager.Update();
             }
-         
-         
         }
-
-      
     }
 }

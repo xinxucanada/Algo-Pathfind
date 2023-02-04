@@ -40,11 +40,12 @@
 			this.btnLb0 = new System.Windows.Forms.Button();
 			this.btnTri = new System.Windows.Forms.Button();
 			this.btnRegenerate = new System.Windows.Forms.Button();
+			this.lbTitre = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// btnLb1
 			// 
-			this.btnLb1.Location = new System.Drawing.Point(39, 76);
+			this.btnLb1.Location = new System.Drawing.Point(37, 95);
 			this.btnLb1.Name = "btnLb1";
 			this.btnLb1.Size = new System.Drawing.Size(227, 23);
 			this.btnLb1.TabIndex = 0;
@@ -54,7 +55,7 @@
 			// 
 			// btnLb2
 			// 
-			this.btnLb2.Location = new System.Drawing.Point(39, 122);
+			this.btnLb2.Location = new System.Drawing.Point(37, 141);
 			this.btnLb2.Name = "btnLb2";
 			this.btnLb2.Size = new System.Drawing.Size(227, 23);
 			this.btnLb2.TabIndex = 1;
@@ -64,7 +65,7 @@
 			// 
 			// btnLb3
 			// 
-			this.btnLb3.Location = new System.Drawing.Point(39, 163);
+			this.btnLb3.Location = new System.Drawing.Point(37, 182);
 			this.btnLb3.Name = "btnLb3";
 			this.btnLb3.Size = new System.Drawing.Size(227, 23);
 			this.btnLb3.TabIndex = 2;
@@ -74,7 +75,7 @@
 			// 
 			// btnLb4
 			// 
-			this.btnLb4.Location = new System.Drawing.Point(39, 206);
+			this.btnLb4.Location = new System.Drawing.Point(37, 225);
 			this.btnLb4.Name = "btnLb4";
 			this.btnLb4.Size = new System.Drawing.Size(227, 23);
 			this.btnLb4.TabIndex = 3;
@@ -84,7 +85,7 @@
 			// 
 			// btnLb5
 			// 
-			this.btnLb5.Location = new System.Drawing.Point(39, 245);
+			this.btnLb5.Location = new System.Drawing.Point(37, 264);
 			this.btnLb5.Name = "btnLb5";
 			this.btnLb5.Size = new System.Drawing.Size(227, 23);
 			this.btnLb5.TabIndex = 4;
@@ -94,7 +95,7 @@
 			// 
 			// btnLb6
 			// 
-			this.btnLb6.Location = new System.Drawing.Point(39, 284);
+			this.btnLb6.Location = new System.Drawing.Point(37, 303);
 			this.btnLb6.Name = "btnLb6";
 			this.btnLb6.Size = new System.Drawing.Size(227, 23);
 			this.btnLb6.TabIndex = 5;
@@ -104,7 +105,7 @@
 			// 
 			// btnLb7
 			// 
-			this.btnLb7.Location = new System.Drawing.Point(39, 329);
+			this.btnLb7.Location = new System.Drawing.Point(37, 348);
 			this.btnLb7.Name = "btnLb7";
 			this.btnLb7.Size = new System.Drawing.Size(227, 23);
 			this.btnLb7.TabIndex = 6;
@@ -114,7 +115,7 @@
 			// 
 			// btnLb8
 			// 
-			this.btnLb8.Location = new System.Drawing.Point(39, 367);
+			this.btnLb8.Location = new System.Drawing.Point(37, 386);
 			this.btnLb8.Name = "btnLb8";
 			this.btnLb8.Size = new System.Drawing.Size(227, 23);
 			this.btnLb8.TabIndex = 7;
@@ -124,7 +125,7 @@
 			// 
 			// btnLb9
 			// 
-			this.btnLb9.Location = new System.Drawing.Point(39, 406);
+			this.btnLb9.Location = new System.Drawing.Point(37, 425);
 			this.btnLb9.Name = "btnLb9";
 			this.btnLb9.Size = new System.Drawing.Size(227, 23);
 			this.btnLb9.TabIndex = 8;
@@ -134,7 +135,7 @@
 			// 
 			// btnLb0
 			// 
-			this.btnLb0.Location = new System.Drawing.Point(39, 31);
+			this.btnLb0.Location = new System.Drawing.Point(37, 50);
 			this.btnLb0.Name = "btnLb0";
 			this.btnLb0.Size = new System.Drawing.Size(227, 23);
 			this.btnLb0.TabIndex = 9;
@@ -162,11 +163,22 @@
 			this.btnRegenerate.UseVisualStyleBackColor = true;
 			this.btnRegenerate.Click += new System.EventHandler(this.btnRegenerate_Click);
 			// 
+			// lbTitre
+			// 
+			this.lbTitre.AutoSize = true;
+			this.lbTitre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lbTitre.Location = new System.Drawing.Point(33, 9);
+			this.lbTitre.Name = "lbTitre";
+			this.lbTitre.Size = new System.Drawing.Size(145, 20);
+			this.lbTitre.TabIndex = 12;
+			this.lbTitre.Text = "Liste de labyrinthes";
+			// 
 			// Choisir
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(387, 462);
+			this.Controls.Add(this.lbTitre);
 			this.Controls.Add(this.btnRegenerate);
 			this.Controls.Add(this.btnTri);
 			this.Controls.Add(this.btnLb0);
@@ -181,9 +193,10 @@
 			this.Controls.Add(this.btnLb1);
 			this.Name = "Choisir";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Choisir";
+			this.Text = "Choisir un labyrinthe";
 			this.Load += new System.EventHandler(this.Choisir_Load);
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -201,5 +214,6 @@
 		private System.Windows.Forms.Button btnLb0;
 		private System.Windows.Forms.Button btnTri;
 		private System.Windows.Forms.Button btnRegenerate;
+		private System.Windows.Forms.Label lbTitre;
 	}
 }

@@ -8,6 +8,7 @@ using labyrinthe.Properties;
 
 namespace labyrinthe
 {
+	//contrôler les sons pour jeux
 	internal class SoundManager
 	{
 		private static SoundPlayer startPlayer = new SoundPlayer();

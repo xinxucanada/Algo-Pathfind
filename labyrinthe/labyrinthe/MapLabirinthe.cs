@@ -33,8 +33,6 @@ namespace labyrinthe
 			t = new Thread(new ThreadStart(GameMainThread)); //créer et démarrer thread pour game
 
             t.Start();
-
-
 		}
         private static void GameMainThread()
         {
@@ -86,12 +84,10 @@ namespace labyrinthe
         {
             
         }
-
 		private void LbStep_EnabledChanged(object sender, EventArgs e)
 		{
 
 		}
-
 		private void BtBFS_Click(object sender, EventArgs e)
 		{
 			GameObjectManager.PathBfs();
@@ -121,20 +117,15 @@ namespace labyrinthe
 		{
 			GameObjectManager.Manuel();
 		}
-
-	
-
 		private void MapLabirinthe_KeyDown(object sender, KeyEventArgs e)
 		{
 			Console.WriteLine(e.KeyCode.ToString());
 		}
-
 		private void MapLabirinthe_KeyUp(object sender, KeyEventArgs e)
 		{
 			Console.WriteLine(e.KeyCode.ToString());
 			GameObjectManager.KeyDown(e);
 		}
-
 		private void BtBack_Click(object sender, EventArgs e)
 		{
             this.Close();

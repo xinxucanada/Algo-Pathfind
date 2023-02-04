@@ -28,6 +28,7 @@ namespace labyrinthe
 		//lister 10 labyrinthes dans 10 boutons
 		private void Populate()
 		{
+			lbTitre.Text = $"Liste de labyrinthes {StartMenu.rows} X {StartMenu.cols}";
 			btnLb0.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[0].minSteps} étape ";
 			btnLb1.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[1].minSteps} étape ";
 			btnLb2.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[2].minSteps} étape ";

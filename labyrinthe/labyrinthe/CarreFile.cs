@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace labyrinthe
 {
+	// structuree file avec node de double liée (même JAVA code en projet continu)
 	internal class CarreFile<T>
 	{
 		private NodeDoubleLiee<T> first;
@@ -44,7 +45,6 @@ namespace labyrinthe
 		{
 
 			NodeDoubleLiee<T> d = new NodeDoubleLiee<T>(v);
-			//Console.WriteLine("push " + v.ToString());
 
 			if (this.first == null)
 			{

@@ -355,9 +355,9 @@ namespace labyrinthe
 				// tester 4 directions
 				for (int i = 0; i < 4; i++)
 				{
-                    Thread.Sleep(1);
-                    //  tester mur horizontal si on bouge à gauche à droite
-                    if (i % 2 == 0)
+					if (cols <= 150 && rows <= 150) Thread.Sleep(1);
+					//  tester mur horizontal si on bouge à gauche à droite
+					if (i % 2 == 0)
 					{
 						if (wallV[carreCurrent.y + dwy[i], carreCurrent.x + dwx[i]] == 0)
 						{ 
@@ -442,7 +442,7 @@ namespace labyrinthe
                 // ensuite, on teste les voisins de la carrée courrente
 				for (int i = 0; i < 4; i++)
 				{
-                    Thread.Sleep(sleepTime);
+					if (cols <= 150 && rows <= 150) Thread.Sleep(sleepTime);
                     if (i % 2 == 0)
 					{
 						if (wallV[currentCarre.y + dwy[i], currentCarre.x + dwx[i]] == 0)
@@ -497,8 +497,9 @@ namespace labyrinthe
         }
         public bool setWay(int x, int y)
         {
-            Thread.Sleep(2);
-            CurrentSteps++;
+            if (cols <= 150 && rows <= 150) Thread.Sleep(1);
+            if (cols <= 100 && rows <= 100) Thread.Sleep(1);
+			CurrentSteps++;
             if (map[rows - 1, cols - 1].status == Status.visited)
             {
 				// si carrée courrente égale à "Sortie", function se termine

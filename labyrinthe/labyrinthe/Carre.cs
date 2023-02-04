@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace labyrinthe
 {
+    //définir état de carrée
     public enum Status
     {
         vide,
@@ -20,9 +21,9 @@ namespace labyrinthe
     {
         public int x;
         public int y;
-        public int step;
-        public Carre pre;
-        public int distanceTobe;
+        public int step; // distance de l'entrée
+        public Carre pre; // node parent
+        public int distanceTobe; // distance éstimée à la sortie
         public int totalDistance;
         public Status status;
        

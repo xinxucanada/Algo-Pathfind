@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace labyrinthe
 {
+	// utile pour trier les labyrinthes (même JAVA code en projet continu)
 	internal class TriFusion
 	{
 		private static Maze[] avatar;

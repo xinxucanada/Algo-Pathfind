@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace labyrinthe
 {
 	//internal class MinPriorityQueue
+	// structuree priority queue base en "heap" (même JAVA code en projet continu)
 	public class MinPriorityQueue {
     //array pour tous les elements
     private Carre[] items;
@@ -20,6 +21,7 @@ namespace labyrinthe
 		this.items = new Carre[capacity + 1];
 		this.n = 0;
 	}
+	// définir comment comparer des noeudes
 	private bool lessThan(int i, int j)
 	{
 		if (items[i].totalDistance < items[j].totalDistance) return true;
@@ -34,6 +36,7 @@ namespace labyrinthe
 		items[j] = temp;
 	}
 
+	// pop permier élément qui a la plus courte distance, puis trier le reste
 	public Carre PopMin()
 	{
 		Carre min = items[1];
@@ -43,6 +46,7 @@ namespace labyrinthe
 		return min;
 	}
 
+	// push nouvel élément dans la queue, puis trier la queue
 	public void Push(Carre t)
 	{
 		items[++n] = t;
@@ -58,7 +62,7 @@ namespace labyrinthe
 	{
 		return n == 0;
 	}
-
+	// élément flotte en haut losqu'il est plus petit que node parent
 	private void swim(int i)
 	{
 		while (i > 1)
@@ -74,8 +78,8 @@ namespace labyrinthe
 			}
 		}
 	}
-
-	private void sink(int i)
+		// élément coule en bas losqu'il est plus grand que un des ses nodes enfants
+		private void sink(int i)
 	{
 		while (2 * i <= n)
 		{
