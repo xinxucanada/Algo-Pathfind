@@ -11,7 +11,7 @@ Générateur de labyrinthes
 2. Les labyrinthes sont générés de manière aléatoire. (Divisions horizontales et verticales se font aléatoirment).
 3. L'entrée en haut à gauche, sortie en bas à droite.
 ## partie 2
-1. Profondeur:
+#### 1. Profondeur:
 1.1 chercher chemin plus profondeur plus possible, change état comme visité(couleur verte). une fois tout bloqué, change état comme mort(couleur noire), return à noeud parent. Programme s'arrête dès qu'on trouve la première solution.
 ![image](https://user-images.githubusercontent.com/111302670/216750078-a53bd11d-9b8d-48d1-a1a8-fb6ff3536acb.png)
 ![image](https://user-images.githubusercontent.com/111302670/216750402-64271e6a-148c-4c48-a372-acefaf2a697d.png)
@@ -21,12 +21,12 @@ chemin visité au courrent(couleur verte); carrées déjà visitées (couleur bl
 ![image](https://user-images.githubusercontent.com/111302670/216750435-bf43ffe8-bd67-4311-8d35-48fe495cf111.png)
 ![image](https://user-images.githubusercontent.com/111302670/216750447-0487d278-e0a3-48f2-b6c7-b7badf048aae.png)
 
-2. Largeur:
-On met les carrées qui ont la même distance de l'entrée dans la file(couleur bleue), puis pop une de la file(FIFO couleur verte), chercher ses voisins, push les voisins possibles dans la file(couleur bleue).
+#### 2. Largeur:
+On met les carrées qui ont la même distance de l'entrée dans la file(couleur bleue), puis pop une de la file(FIFO changer sa couleur en vert comme "visited"), chercher ses voisins, push les voisins possibles dans la file(couleur bleue).
 ![image](https://user-images.githubusercontent.com/111302670/216752658-712a645c-5cd6-4eee-b524-89c98330e915.png)
 ![image](https://user-images.githubusercontent.com/111302670/216750528-60a57d12-5030-489f-b6e2-8138ac6fd68c.png)
 
-3. A*:
+#### 3. A*:
 On push les carrées dans priority queue (état "essaye" couleur bleue), ensuite pop celle qui a la plus courte distance total(f = coût acctual + heuristique). changer son état comme "visited"(couleur verte), à la fois, push ses voisins possibles dans priority queue.(ici, pas besoin de comparer qui est le meilleur voisin, push tous dans la priority queue qui va s'occuper de ça)
 ![image](https://user-images.githubusercontent.com/111302670/216750690-aab38c00-cabc-4daa-94ec-91dbe80129ba.png)
 ![image](https://user-images.githubusercontent.com/111302670/216750699-4edc564f-e8bb-4e7d-9260-4aca99aa8740.png)
