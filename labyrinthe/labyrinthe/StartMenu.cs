@@ -29,10 +29,10 @@ namespace labyrinthe
             catch (Exception)
             {
                 //si entrée invalide, on prend 30 lignes et 30 colonnes par defaut
-                rows = 30;
-                cols = 30;
+                rows = 20;
+                cols = 20;
             }
-            //new MapLabirinthe().Show();
+            //créer fenêtre pour choisir labyrinthe
             new Choisir().Show();
             this.Hide();
         }

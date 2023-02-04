@@ -16,21 +16,21 @@ namespace labyrinthe
         private Thread t;
         private static Graphics WindowG;
         private static Bitmap tempBmp;
+        private static int Frequence = 60;
 
         public MapLabirinthe()
         {
             InitializeComponent();
-			this.KeyPreview = true;
 		
-            WindowG = this.CreateGraphics(); // create graphic in gamewindow
+            WindowG = this.CreateGraphics(); // créer graphic sur gamewindow
 
-            tempBmp = new Bitmap(1200, 1000); // create bitmap for game show
-            
-            Graphics bmpG = Graphics.FromImage(tempBmp); //create graphic from bitmap
+            tempBmp = new Bitmap(1200, 1000); //créer bitmap pour game show
 
-            GameFramwork.g = bmpG;  // give empty graphic to gameframework for drawing
+			Graphics bmpG = Graphics.FromImage(tempBmp); //créer graphic de bitmap
 
-			t = new Thread(new ThreadStart(GameMainThread)); //create et start thread for game
+			GameFramwork.g = bmpG;  // donne graphic vide à gameframework pour y peindre
+
+			t = new Thread(new ThreadStart(GameMainThread)); //créer et démarrer thread pour game
 
             t.Start();
 
@@ -39,14 +39,14 @@ namespace labyrinthe
         private static void GameMainThread()
         {
             GameFramwork.start();
-
-            int sleepTime = 1000 / 60;
+			//rafraîchissements par seconde
+			int sleepTime = 1000 / Frequence;
 
             while (true)
             {
-                GameFramwork.g.Clear(Color.Gray);  //背景涂黑
-                GameFramwork.update(); //GameFramwork 的g发生改变
-                WindowG.DrawImage(tempBmp, 0, 0); //GameFramwork 改变后的g, 改变了tempBmp, 然后tempBmp赋值给真正的windowG
+                GameFramwork.g.Clear(Color.Gray);  //donner background grey
+                GameFramwork.update(); //graphis de GramFramwork update
+                WindowG.DrawImage(tempBmp, 0, 0); //après GameFramwork change graphic, tempBmp change, puis donne tempBMP à GameWindow Graphic
 				Thread.Sleep(sleepTime);
             }
         }
@@ -133,7 +133,10 @@ namespace labyrinthe
 		{
 			GameObjectManager.KeyDown(e);
 		}
-		
 
+		private void BtBack_Click(object sender, EventArgs e)
+		{
+            this.Close();
+		}
 	}
 }

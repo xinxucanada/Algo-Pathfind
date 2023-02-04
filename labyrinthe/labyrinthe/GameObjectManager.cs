@@ -15,22 +15,37 @@ namespace labyrinthe
         // creer 10 labyrinthes, calculer leur meilleur chemin
         public static void MazeChoisir()
         {
-            Console.WriteLine("mazechoisir");
-            Console.WriteLine(StartMenu.rows);
 
             for(int i = 0; i < mazes.Length; i++)
             {
-               Console.WriteLine(i);
                 mazes[i] = new Maze(StartMenu.rows, StartMenu.cols);
-                mazes[i].aStar(0);
 			}
-        }
+            CalculerSteps();
+
+		}
+        // calculer le chemin le plus court
+        public static void CalculerSteps()
+        {
+			for (int i = 0; i < mazes.Length; i++)
+			{
+				maze = mazes[i];
+                MapReset();
+                maze.aStar(0);
+			}
+		}
+
         public static void Start()
         {
             maze = mazes[Choisir.mapIndex];
             MapReset();
 
 		}
+		// Le tri des labyrinthes par son chemin le plus court, complexité temporaire O(nlgn)
+		public static void TriMaps()
+        {
+			CalculerSteps();
+			TriFusion.sort(mazes);
+        }
 
         public static void Update()
         {
@@ -39,19 +54,23 @@ namespace labyrinthe
 
         public static void PathDfs()
         {
-            maze.dfs();
+			MapReset();
+			maze.dfs();
         }
 		public static void PathBfs()
         {
-            maze.bfs();
+			MapReset();
+			maze.bfs();
         }
 		public static void PathAStar()
         {
-            maze.aStar(1);
+			MapReset();
+			maze.aStar(1);
         }
         public static void PathDFSRapide()
         {
-            maze.setWay();
+			MapReset();
+			maze.setWay();
         }
         public static void MapReset()
         {
@@ -91,7 +110,5 @@ namespace labyrinthe
             maze.KeyDown(e);
 
 		}
-
-
 	}
 }

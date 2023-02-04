@@ -652,7 +652,6 @@ namespace labyrinthe
 					}
                     if (jouerCarre.x == cols - 1 && jouerCarre.y == rows - 1)
                     {
-                        Console.WriteLine("Tu gagne!");
                         map[rows - 1, cols - 1].status = Status.manuel;
                         minSteps = CurrentSteps;
                         jouerModel = false;

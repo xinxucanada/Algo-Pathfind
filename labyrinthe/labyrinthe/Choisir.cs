@@ -20,10 +20,12 @@ namespace labyrinthe
 
 		private void Choisir_Load(object sender, EventArgs e)
 		{
+			// Générer 10 labyrinthes
 			GameObjectManager.MazeChoisir();
 			Populate();
 			
 		}
+		//lister 10 labyrinthes dans 10 boutons
 		private void Populate()
 		{
 			btnLb0.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[0].minSteps} étape ";
@@ -37,7 +39,7 @@ namespace labyrinthe
 			btnLb8.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[8].minSteps} étape ";
 			btnLb9.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[9].minSteps} étape ";
 		}
-
+		//montrer labyrinthe choisi
 		private void btnLb0_Click(object sender, EventArgs e)
 		{
 			mapIndex = 0;
@@ -105,7 +107,8 @@ namespace labyrinthe
 
 		private void btnTri_Click(object sender, EventArgs e)
 		{
-
+			GameObjectManager.TriMaps();
+			Populate();
 		}
 	}
 }
