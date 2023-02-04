@@ -341,6 +341,7 @@ namespace labyrinthe
 			{
                 // pop une carrée comme carrée courrente
 				carreCurrent = carreFile.pop();
+                carreCurrent.status = Status.visited;
                 CurrentSteps = carreCurrent.step;
 				//si carrée courrent égale "sortir", on s'arrête
 				if (carreCurrent.x == cols - 1 && carreCurrent.y == rows - 1)
@@ -370,7 +371,7 @@ namespace labyrinthe
                                 // son node parent est carrée courrente
                                 // push cette carrée dans la file
                                 nbrVisite++;
-								map[nextY,nextX].status = Status.visited;
+								map[nextY,nextX].status = Status.essay;
 								map[nextY,nextX].step = carreCurrent.step + 1;
 								map[nextY,nextX].pre = carreCurrent;
                                 carreFile.push(map[nextY, nextX]);
@@ -386,7 +387,7 @@ namespace labyrinthe
 							if (map[nextY, nextX].status == Status.vide)
 							{ 
                                 nbrVisite++; 
-								map[nextY, nextX].status = Status.visited;
+								map[nextY, nextX].status = Status.essay;
 								map[nextY, nextX].step = carreCurrent.step + 1;
 								map[nextY, nextX].pre = carreCurrent;
 								carreFile.push(map[nextY, nextX]);
