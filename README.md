@@ -22,8 +22,8 @@ chemin visité au courrent(couleur verte); carrées déjà visitées (couleur bl
 ![image](https://user-images.githubusercontent.com/111302670/216750447-0487d278-e0a3-48f2-b6c7-b7badf048aae.png)
 
 2. Largeur:
-On met les carrées qui ont la même distance de l'entrée dans la file, puis pop une de la file(FIFO), chercher ses voisins, push les voisins possibles dans la file
-![image](https://user-images.githubusercontent.com/111302670/216750515-4043b0ae-ffba-4f7c-b102-4e1219cf31f6.png)
+On met les carrées qui ont la même distance de l'entrée dans la file(couleur bleue), puis pop une de la file(FIFO couleur verte), chercher ses voisins, push les voisins possibles dans la file(couleur bleue).
+![image](https://user-images.githubusercontent.com/111302670/216752658-712a645c-5cd6-4eee-b524-89c98330e915.png)
 ![image](https://user-images.githubusercontent.com/111302670/216750528-60a57d12-5030-489f-b6e2-8138ac6fd68c.png)
 
 3. A*:
@@ -35,12 +35,15 @@ On push les carrées dans priority queue (état "essaye" couleur bleue), ensuite
 Implémenter un menu permettant d'effectuer les étapes suivantes:
 
 1. Générer un nouveau labyrinthe.
+
  ![image](https://user-images.githubusercontent.com/111302670/216751075-01b4dcd0-70d9-4f18-b37b-ec69838aec93.png)
 
 2. Afficher la liste de labyrinthes.
+
 ![image](https://user-images.githubusercontent.com/111302670/216751086-17705363-bc31-4dc3-b7f2-0f7da36f5ad1.png)
 
 3. Choisir un labyrinthe existant (triés en ordre de difficultés).
+### Le tri des labyrinthes se fait en  O(n*log(n)) (on utilise tri fusion)
  ![image](https://user-images.githubusercontent.com/111302670/216751137-707875e1-e228-49df-9e76-d4afdbac0a52.png)
 
 4. Afficher le labyrinthe choisi.
@@ -59,7 +62,8 @@ Implémenter un menu permettant d'effectuer les étapes suivantes:
 Ouvrez et executez "labyrinthe.sln" sur visual studio
 
 # Auteur
-Xin Xu
+Xin Xu;
+
 Yimin Chemen
 
 # Support
