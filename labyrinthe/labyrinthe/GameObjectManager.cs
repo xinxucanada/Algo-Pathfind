@@ -10,10 +10,27 @@ namespace labyrinthe
     internal class GameObjectManager
     {
         public static Maze maze;
+        public static Maze[] mazes = new Maze[10];
+
+        // creer 10 labyrinthes, calculer leur meilleur chemin
+        public static void MazeChoisir()
+        {
+            Console.WriteLine("mazechoisir");
+            Console.WriteLine(StartMenu.rows);
+
+            for(int i = 0; i < mazes.Length; i++)
+            {
+               Console.WriteLine(i);
+                mazes[i] = new Maze(StartMenu.rows, StartMenu.cols);
+                mazes[i].aStar(0);
+			}
+        }
         public static void Start()
         {
-            maze = new Maze(StartMenu.rows, StartMenu.cols);
-        }
+            maze = mazes[Choisir.mapIndex];
+            MapReset();
+
+		}
 
         public static void Update()
         {
@@ -30,7 +47,7 @@ namespace labyrinthe
         }
 		public static void PathAStar()
         {
-            maze.aStar();
+            maze.aStar(1);
         }
         public static void PathDFSRapide()
         {

@@ -16,8 +16,8 @@ namespace labyrinthe
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Choisir());
-            //Application.Run(new StartMenu());
+            //Application.Run(new Choisir());
+            Application.Run(new StartMenu());
         }
     }
 }

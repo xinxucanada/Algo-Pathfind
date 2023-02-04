@@ -21,12 +21,7 @@ namespace labyrinthe
         {
             InitializeComponent();
 			this.KeyPreview = true;
-			//if (StartMenu.rows > 12 || StartMenu.cols > 12)
-			//{
-			//    BtnDFS.Enabled = false;
-			//}
-			Console.WriteLine(StartMenu.rows);
-            Console.WriteLine(StartMenu.cols);
+		
             WindowG = this.CreateGraphics(); // create graphic in gamewindow
 
             tempBmp = new Bitmap(1200, 1000); // create bitmap for game show
@@ -43,7 +38,6 @@ namespace labyrinthe
 		}
         private static void GameMainThread()
         {
-            //Game Framwork
             GameFramwork.start();
 
             int sleepTime = 1000 / 60;
@@ -132,13 +126,11 @@ namespace labyrinthe
 
 		private void MapLabirinthe_KeyDown(object sender, KeyEventArgs e)
 		{
-            //Console.WriteLine(e.KeyCode.ToString());
-            //GameObjectManager.KeyDown(e);
+            
         }
 
 		private void MapLabirinthe_KeyUp(object sender, KeyEventArgs e)
 		{
-			//Console.WriteLine(e.KeyCode.ToString());
 			GameObjectManager.KeyDown(e);
 		}
 		

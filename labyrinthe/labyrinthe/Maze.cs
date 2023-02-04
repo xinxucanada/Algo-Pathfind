@@ -400,15 +400,15 @@ namespace labyrinthe
            Console.WriteLine("Pas de chance");
         }
 
-		public void aStar()
+		public void aStar(int sleepTime)
 		{
 			CurrentSteps = 0;
 			minSteps = N;
 			nbrVisite = 0;
-			aStar(0, 0);
+			aStar(0, 0, sleepTime);
 			drawPath(carreFile.pop());
 		}
-		public void aStar(int x, int y)
+		public void aStar(int x, int y, int sleepTime)
 		{
 			Carre currentCarre;
             // créer priorityqueue pour y sauvegarder les carrées d'essai
@@ -441,7 +441,7 @@ namespace labyrinthe
                 // ensuite, on teste les voisins de la carrée courrente
 				for (int i = 0; i < 4; i++)
 				{
-                    Thread.Sleep(1);
+                    Thread.Sleep(sleepTime);
                     if (i % 2 == 0)
 					{
 						if (wallV[currentCarre.y + dwy[i], currentCarre.x + dwx[i]] == 0)

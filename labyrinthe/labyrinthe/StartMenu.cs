@@ -32,7 +32,8 @@ namespace labyrinthe
                 rows = 30;
                 cols = 30;
             }
-            new MapLabirinthe().Show();
+            //new MapLabirinthe().Show();
+            new Choisir().Show();
             this.Hide();
         }
 
