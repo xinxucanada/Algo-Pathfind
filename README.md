@@ -33,7 +33,7 @@ On push les carrées dans priority queue (état "essaye" couleur bleue), ensuite
 ![image](https://user-images.githubusercontent.com/111302670/216750690-aab38c00-cabc-4daa-94ec-91dbe80129ba.png)
 ![image](https://user-images.githubusercontent.com/111302670/216750699-4edc564f-e8bb-4e7d-9260-4aca99aa8740.png)
 
-structure de la priority queue(https://www.bilibili.com/video/BV1iJ411E7xW?p=109&vd_source=63d29f729d495ccb836eeccb160a82dd)
+structure de la priority queue(citation: https://www.bilibili.com/video/BV1iJ411E7xW?p=109&vd_source=63d29f729d495ccb836eeccb160a82dd)
 ![image](https://user-images.githubusercontent.com/111302670/216779666-02138e20-7cb4-4b87-942d-5daabc7e4766.png)
 
 ## partie 3
@@ -48,7 +48,7 @@ Implémenter un menu permettant d'effectuer les étapes suivantes:
 ![image](https://user-images.githubusercontent.com/111302670/216751086-17705363-bc31-4dc3-b7f2-0f7da36f5ad1.png)
 
 3. Choisir un labyrinthe existant (triés en ordre de difficultés).
-### Le tri des labyrinthes se fait en  O(n*log(n)) (on utilise tri fusion)
+### Le tri des labyrinthes se fait en  O(n*log(n)) em utilisant tri fusion.
  ![image](https://user-images.githubusercontent.com/111302670/216751137-707875e1-e228-49df-9e76-d4afdbac0a52.png)
 
 4. Afficher le labyrinthe choisi.
