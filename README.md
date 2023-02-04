@@ -43,7 +43,7 @@ Implémenter un menu permettant d'effectuer les étapes suivantes:
 ![image](https://user-images.githubusercontent.com/111302670/216751086-17705363-bc31-4dc3-b7f2-0f7da36f5ad1.png)
 
 3. Choisir un labyrinthe existant (triés en ordre de difficultés).
-### Le tri des labyrinthes se fait en  O(n*log(n))
+### Le tri des labyrinthes se fait en  O(n*log(n)) (on utilise tri fusion)
  ![image](https://user-images.githubusercontent.com/111302670/216751137-707875e1-e228-49df-9e76-d4afdbac0a52.png)
 
 4. Afficher le labyrinthe choisi.
