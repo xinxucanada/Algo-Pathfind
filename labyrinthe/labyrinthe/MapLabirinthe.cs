@@ -55,8 +55,8 @@ namespace labyrinthe
 
         private void MapLabirinthe_Load(object sender, EventArgs e)
         {
-
-        }
+			KeyPreview = true;
+		}
 
         private void MapLabirinthe_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -126,11 +126,12 @@ namespace labyrinthe
 
 		private void MapLabirinthe_KeyDown(object sender, KeyEventArgs e)
 		{
-            
-        }
+			Console.WriteLine(e.KeyCode.ToString());
+		}
 
 		private void MapLabirinthe_KeyUp(object sender, KeyEventArgs e)
 		{
+			Console.WriteLine(e.KeyCode.ToString());
 			GameObjectManager.KeyDown(e);
 		}
 

@@ -573,6 +573,7 @@ namespace labyrinthe
         // mode manuel
         public void Manuel()
         {
+            Console.WriteLine("game");
             jouerModel = true;
             // créer carrée du joueur
             jouerCarre = new Carre(0, 0, 0, null);
