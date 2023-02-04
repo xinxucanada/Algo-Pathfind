@@ -30,6 +30,8 @@ On met les carrées qui ont la même distance de l'entrée dans la file(couleur 
 On push les carrées dans priority queue (état "essaye" couleur bleue), ensuite pop celle qui a la plus courte distance total(f = coût acctual + heuristique). changer son état comme "visited"(couleur verte), à la fois, push ses voisins possibles dans priority queue.(ici, pas besoin de comparer qui est le meilleur voisin, push tous dans la priority queue qui va s'occuper de ça)
 ![image](https://user-images.githubusercontent.com/111302670/216750690-aab38c00-cabc-4daa-94ec-91dbe80129ba.png)
 ![image](https://user-images.githubusercontent.com/111302670/216750699-4edc564f-e8bb-4e7d-9260-4aca99aa8740.png)
+structure de la priority queue
+![image](https://user-images.githubusercontent.com/111302670/216779666-02138e20-7cb4-4b87-942d-5daabc7e4766.png)
 
 ## partie 3
 Implémenter un menu permettant d'effectuer les étapes suivantes:
