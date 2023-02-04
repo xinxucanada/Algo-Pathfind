@@ -22,8 +22,8 @@ chemin visité au courrent(couleur verte); carrées déjà visitées (couleur bl
 ![image](https://user-images.githubusercontent.com/111302670/216750447-0487d278-e0a3-48f2-b6c7-b7badf048aae.png)
 
 2. Largeur:
-On met les carrées qui ont la même distance de l'entrée dans la file, puis pop une de la file(FIFO), chercher ses voisins, push les voisins possibles dans la file
-![image](https://user-images.githubusercontent.com/111302670/216750515-4043b0ae-ffba-4f7c-b102-4e1219cf31f6.png)
+On met les carrées qui ont la même distance de l'entrée dans la file(couleur bleue), puis pop une de la file(FIFO couleur verte), chercher ses voisins, push les voisins possibles dans la file(couleur bleue).
+![image](https://user-images.githubusercontent.com/111302670/216752658-712a645c-5cd6-4eee-b524-89c98330e915.png)
 ![image](https://user-images.githubusercontent.com/111302670/216750528-60a57d12-5030-489f-b6e2-8138ac6fd68c.png)
 
 3. A*:
