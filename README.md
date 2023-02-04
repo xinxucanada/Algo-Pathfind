@@ -12,7 +12,7 @@ Générateur de labyrinthes
 3. L'entrée en haut à gauche, sortie en bas à droite.
 ## partie 2
 #### 1. Profondeur:
-##### 1.1 une solution
+##### 1.1 un chemin (souvent pas le plus court)
 chercher chemin plus profondeur plus possible, change état comme visité(couleur verte). une fois tout bloqué, change état comme mort(couleur noire), return à noeud parent. Programme s'arrête dès qu'on trouve la première solution.
 ![image](https://user-images.githubusercontent.com/111302670/216750078-a53bd11d-9b8d-48d1-a1a8-fb6ff3536acb.png)
 ![image](https://user-images.githubusercontent.com/111302670/216750402-64271e6a-148c-4c48-a372-acefaf2a697d.png)
