@@ -3,12 +3,12 @@
 # Nom
 Générateur de labyrinthes
 # Installation
-partie C#: Visual Studio 2019 ou 2022 (algorithme complèt, interface graphic, démonstration animée).
-partie JAVA: VS code + java extension ou IntelliJ IDEA(programme incomplet utilisé pour étudier/tester les algorithmes).
+### partie C#: Visual Studio 2019 ou 2022 (algorithme complèt, interface graphic, démonstration animée).
+### partie JAVA: VS code + java extension ou IntelliJ IDEA(programme incomplet utilisé pour étudier/tester les algorithmes).
 # Description
 ## partie 1
 1. Utiliser algorithem 'division' pour assurer les labyrinthes ont au moins une solution
-2. Les labyrinthes sont générés de manière aléatoire. (Divisions horizontales et verticales se font aléatoirment.
+2. Les labyrinthes sont générés de manière aléatoire. (Divisions horizontales et verticales se font aléatoirment).
 3. L'entrée en haut à gauche, sortie en bas à droite.
 ## partie 2
 1. Profondeur:
