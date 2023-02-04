@@ -217,7 +217,7 @@ namespace labyrinthe
 				}
 			}
 		}
-        //peindre la meilleure chemin
+        //peindre le meilleur chemin
 		public void drawPath(Carre carre)
 		{
 			while (carre != null)
@@ -228,7 +228,7 @@ namespace labyrinthe
             
 		}
 
-        // pour l'algorithme DFS, la meilleure chemine est sauvgardée dans une file
+        // pour l'algorithme DFS, le meilleur chemin est sauvgardée dans une file
         public void drawPathDFS()
         {
             Carre carreCurrent;
@@ -246,10 +246,10 @@ namespace labyrinthe
 		public void dfs(int x, int y)
 		{
             // si labyrinthe est trop grand on sleep pas
-            if(cols <= 15 && rows <= 15) Thread.Sleep(1);
+            if(cols <= 30 && rows <= 30) Thread.Sleep(1);
             Carre carreCurrent = map[y, x];
             CurrentSteps = carreCurrent.step;
-            // si carrée currante == sortir et la chemin est plus court que la derrière fois, on arrete et mettre la chemin dans file
+            // si carrée currante == sortir et le chemin est plus court que la derrière fois, on arrete et mettre le chemin dans file
 			if (x == cols - 1 && y == rows - 1)
 			{
                 if (carreCurrent.step < minSteps)
@@ -262,7 +262,7 @@ namespace labyrinthe
                         carreCurrent = carreCurrent.pre;
                         carreFile.push(carreCurrent.copy());
                     }
-                    Console.WriteLine(minSteps + " steps===========================================================");
+                    Console.WriteLine("current best way " + minSteps + " steps================================");
                     return;
                 }
 				return;
@@ -345,7 +345,7 @@ namespace labyrinthe
 				//si carrée courrent égale "sortir", on s'arrête
 				if (carreCurrent.x == cols - 1 && carreCurrent.y == rows - 1)
 				{
-                    // pour bfs, dès qu'on trouve la chemin, c'est la meilleure chemin
+                    // pour bfs, dès qu'on trouve le chemin, c'est le meilleure chemin
                     // donc on la peint
                     minSteps = carreCurrent.step;
 					drawPath(carreCurrent);
@@ -411,17 +411,20 @@ namespace labyrinthe
 		public void aStar(int x, int y)
 		{
 			Carre currentCarre;
-            // créer priotityqueue pour sauvegarder les carrées d'essai
+            // créer priorityqueue pour y sauvegarder les carrées d'essai
 			tryPoints = new MinPriorityQueue(2 * (cols + rows));
 			tryPoints.Push(map[y, x]);
 			nbrVisite++;
-			//A* 算法中我们设定为探索墙为0, 已探索为2, 尝试点为1, 最终路径为3
+			//pendant que  priorityqueue n'est pas vide
 			while (!tryPoints.isEmpty())
 			{
+                // pop la carrée dont "f" est minimal comme carrée courente 
 				 currentCarre = tryPoints.PopMin();
 				 CurrentSteps = currentCarre.step;
 				if (currentCarre.x == rows - 1 && currentCarre.y == cols - 1)
-				{  //如果弹出点就是终点, 回溯路径,将路径存入队列file,以便后期绘图,并返回
+				{  
+                    // si carrée courrente égale à "Sortie", function se termine
+                    // on met carrée courrente dans la file, puis répéte pour son parent
 					minSteps = currentCarre.step;
 					carreFile.clear();
 					carreFile.push(currentCarre.copy());
@@ -433,22 +436,25 @@ namespace labyrinthe
 
 					return;
 				}
-				currentCarre.status = Status.visited; //否则, 将弹出点设为已探索
-				//map[currentCarre.y][currentCarre.x].status = Status.visited; //否则, 将弹出点设为已探索
+                // si la carrée qu'on vient de pop n'est pas "Sortie", on change son état à "visited" 
+				currentCarre.status = Status.visited; 
+                // ensuite, on teste les voisins de la carrée courrente
 				for (int i = 0; i < 4; i++)
 				{
                     Thread.Sleep(1);
-                    //                如果左右方向就检测垂直墙
                     if (i % 2 == 0)
 					{
 						if (wallV[currentCarre.y + dwy[i], currentCarre.x + dwx[i]] == 0)
-						{ //墙为空则继续试探
+						{
 							int nextX = currentCarre.x + dx[i];
 							int nextY = currentCarre.y + dy[i];
 							if (map[nextY, nextX].status == Status.vide)
-							{ // 如果未被试探过
+							{ 
+                                // si le voisin n'est jamais visité, on change son état à "essay"
+                                // puis le "push" dans priorityqueue, son node parrent égale à carrée courrente
+                                // son step(c) et totalDistance(f) vont être mises-à-jour
 								Carre nextTry = map[nextY, nextX];
-								nextTry.status = Status.essay; // 如此点未被探索,则暂时设为尝试点,并压入优先队列
+								nextTry.status = Status.essay;
 								nextTry.step = currentCarre.step + 1;
 								nextTry.pre = currentCarre;
 								nextTry.totalDistance = nextTry.step + nextTry.distanceTobe;
@@ -458,15 +464,15 @@ namespace labyrinthe
 						}
 					}
 					else
-					{  //上下方法,检测水平墙
+					{  
 						if (wallH[currentCarre.y + dwy[i], currentCarre.x + dwx[i]] == 0)
-						{ //墙为空则继续试探
+						{ 
 							int nextX = currentCarre.x + dx[i];
 							int nextY = currentCarre.y + dy[i];
 							if (map[nextY, nextX].status == Status.vide)
-							{ // 如果未被试探过
+							{ 
 								Carre nextTry = map[nextY, nextX];
-								nextTry.status = Status.essay; // 如此点未被探索,则暂时设为尝试点,并压入优先队列
+								nextTry.status = Status.essay; 
 								nextTry.step = currentCarre.step + 1;
 								nextTry.pre = currentCarre;
 								nextTry.totalDistance = nextTry.step + nextTry.distanceTobe;
@@ -478,6 +484,8 @@ namespace labyrinthe
 				}
 			}
 		}
+
+        // une autre façon de DFS qui s'arrête dès qu'on trouve le chemin pour la première fois
         public void setWay()
         {
             CurrentSteps = 0;
@@ -488,14 +496,13 @@ namespace labyrinthe
         }
         public bool setWay(int x, int y)
         {
-            Thread.Sleep(10);
+            Thread.Sleep(2);
             CurrentSteps++;
-			//Console.WriteLine($"x:{x} y:{y} ");
             if (map[rows - 1, cols - 1].status == Status.visited)
             {
-				Console.WriteLine("Fini");
-				Console.WriteLine(map[rows - 1, cols - 1].step);
-                Carre currentCarre = map[rows - 1, cols - 1];
+				// si carrée courrente égale à "Sortie", function se termine
+                // on compte toute les carrées dont l'état est "visited", puis le change à "meilleur"
+				Carre currentCarre = map[rows - 1, cols - 1];
                 minSteps = 0;
                for(int i = 0; i < rows; i++)
                 {
@@ -508,22 +515,21 @@ namespace labyrinthe
                         }
                     }
                 }
-
                 return true;
             }
-
+            // si non, et la carrée n'est jamais visitée, on met son état comme "visited"
             if (map[y, x].status == Status.vide)
             {
                 map[y, x].status = Status.visited;
                 nbrVisite++;
-                if (wallH[y + 1, x] != 1)
+				// ensuite  si la mur peut être traversé, on vérifie ses voisins de 4 directions de façon recursive
+				if (wallH[y + 1, x] != 1)
                 {
                     map[y + 1, x].step = map[y, x].step + 1;
              
 					if (setWay(x, y + 1)) 
 					{
 						map[y + 1, x].pre = map[y, x];
-                        //map[y + 1, x].step = map[y, x].step + 1;
                         return true;
                     } 
                 }
@@ -533,7 +539,6 @@ namespace labyrinthe
                     if (setWay(x + 1, y))
                     {
                         map[y, x + 1].pre = map[y, x];
-                        //map[y, x + 1].step = map[y, x].step + 1;
                         return true;
                     }
                 }
@@ -543,7 +548,6 @@ namespace labyrinthe
                     if (setWay(x, y - 1))
                     {
                         map[y - 1, x].pre = map[y, x];
-                        //map[y - 1, x].step = map[y, x].step + 1;
                         return true;
                     }
                 }
@@ -553,10 +557,10 @@ namespace labyrinthe
                     if (setWay(x - 1, y))
                     {
                         map[y, x - 1].pre = map[y, x];
-                        //map[y, x - 1].step = map[y, x].step + 1;
                         return true;
                     }
                 }
+                // si dans les 4 directions, function récursion returne toujours false, on considère cette carrée comme le point "mort"
                 map[y,x].status = Status.mort;
                 return false;
             }
@@ -565,15 +569,19 @@ namespace labyrinthe
                 return false;
             }
         }
+
+        // mode manuel
         public void Manuel()
         {
             jouerModel = true;
-            //map[0, 0].status = Status.manuel;
+            // créer carrée du joueur
             jouerCarre = new Carre(0, 0, 0, null);
             jouerCarre.status = Status.manuel;
             CurrentSteps = 0;
             nbrVisite = 0;
         }
+
+        //carrée du joueur bouge selon événement du clavier et la situation du mur
         public void KeyDown(KeyEventArgs e)
         {
             if (jouerModel)
@@ -612,7 +620,6 @@ namespace labyrinthe
 							{
 								SoundManager.PlayBlock();
 							}
-
 							break;
 						case Keys.Right:
 							if (wallV[Y, X + 1] == 0)
@@ -654,7 +661,7 @@ namespace labyrinthe
 			}
         }
 
-
+        // ancien code pour sauvegarder labyrinthe dans fichier
 		public void SaveWall()
         {
             SaveWallH();
@@ -696,17 +703,17 @@ namespace labyrinthe
                 }
             }
         }
-        public void LoadWallH()
+		// ancien code pour charger labyrinthe du fichier
+		public void LoadWallH()
         {
             try
             {
-                // 创建一个 StreamReader 的实例来读取文件 
-                // using 语句也能关闭 StreamReader
+                // créer StreamReader instance pour lire fichier 
                 using (StreamReader sr = new StreamReader("C:\\Users\\e2194517\\Documents\\GitHub\\labo3Algo\\WallH.txt"))
                 {
                     rows = Convert.ToInt32(sr.ReadLine());
                     cols = Convert.ToInt32(sr.ReadLine());
-                    // 从文件读取并显示行，直到文件的末尾 
+                    // sur head du fichier on peut savois nombres des colonnes et lignes
                     for (int i = 0; i <= rows; i++)
                     {
                         for (int j = 0; j < cols; j++)
@@ -718,7 +725,6 @@ namespace labyrinthe
             }
             catch (Exception e)
             {
-                // 向用户显示出错消息
                 Console.WriteLine("The file could not be read:");
                 Console.WriteLine(e.Message);
             }
@@ -727,13 +733,10 @@ namespace labyrinthe
         {
             try
             {
-                // 创建一个 StreamReader 的实例来读取文件 
-                // using 语句也能关闭 StreamReader
                 using (StreamReader sr = new StreamReader("C:\\Users\\e2194517\\Documents\\GitHub\\labo3Algo\\WallV.txt"))
                 {
                     rows = Convert.ToInt32(sr.ReadLine());
                     cols = Convert.ToInt32(sr.ReadLine());
-                    // 从文件读取并显示行，直到文件的末尾 
                     for (int i = 0; i < rows; i++)
                     {
                         for (int j = 0; j <= cols; j++)
@@ -745,7 +748,6 @@ namespace labyrinthe
             }
             catch (Exception e)
             {
-                // 向用户显示出错消息
                 Console.WriteLine("The file could not be read:");
                 Console.WriteLine(e.Message);
             }

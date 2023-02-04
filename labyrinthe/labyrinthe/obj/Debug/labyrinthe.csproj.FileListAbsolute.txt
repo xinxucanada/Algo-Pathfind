@@ -46,3 +46,4 @@ D:\GitHub\labo3Algo\labyrinthe\labyrinthe\obj\Debug\labyrinthe.csproj.CoreCompil
 D:\GitHub\labo3Algo\labyrinthe\labyrinthe\obj\Debug\labyrinthe.exe
 D:\GitHub\labo3Algo\labyrinthe\labyrinthe\obj\Debug\labyrinthe.pdb
 C:\Users\e2194517\Documents\GitHub\labo3Algo\labyrinthe\labyrinthe\obj\Debug\labyrinthe.csproj.SuggestedBindingRedirects.cache
+D:\GitHub\labo3Algo\labyrinthe\labyrinthe\obj\Debug\labyrinthe.Choisir.resources

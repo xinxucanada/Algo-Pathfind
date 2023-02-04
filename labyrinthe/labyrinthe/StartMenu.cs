@@ -24,19 +24,19 @@ namespace labyrinthe
             try
             {
                 rows = Convert.ToInt32(TbRows.Text);
-                //rows = 5;
                 cols = Convert.ToInt32(TbCols.Text);
-                //cols = 5;
             }
             catch (Exception)
             {
-                rows = 50;
-                cols = 50;
+                //si entrée invalide, on prend 30 lignes et 30 colonnes par defaut
+                rows = 30;
+                cols = 30;
             }
             new MapLabirinthe().Show();
             this.Hide();
         }
 
+        // ancien code pour charger labyrinthe du fichier
         private void RdFacile_CheckedChanged(object sender, EventArgs e)
         {
             new MapLabirinthe().Show();

@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CarreFile.cs" />
+    <Compile Include="Choisir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Choisir.Designer.cs">
+      <DependentUpon>Choisir.cs</DependentUpon>
+    </Compile>
     <Compile Include="GameObjectManager.cs" />
     <Compile Include="Maze.cs" />
     <Compile Include="Carre.cs" />
@@ -68,6 +74,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Choisir.resx">
+      <DependentUpon>Choisir.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MapLabirinthe.resx">
       <DependentUpon>MapLabirinthe.cs</DependentUpon>
     </EmbeddedResource>
