@@ -29,16 +29,16 @@ namespace labyrinthe
 		private void Populate()
 		{
 			lbTitre.Text = $"Liste de labyrinthes {StartMenu.rows} X {StartMenu.cols}";
-			btnLb0.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[0].minSteps} étape ";
-			btnLb1.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[1].minSteps} étape ";
-			btnLb2.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[2].minSteps} étape ";
-			btnLb3.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[3].minSteps} étape ";
-			btnLb4.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[4].minSteps} étape ";
-			btnLb5.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[5].minSteps} étape ";
-			btnLb6.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[6].minSteps} étape ";
-			btnLb7.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[7].minSteps} étape ";
-			btnLb8.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[8].minSteps} étape ";
-			btnLb9.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[9].minSteps} étape ";
+			btnLb0.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[0].minSteps} étapes ";
+			btnLb1.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[1].minSteps} étapes ";
+			btnLb2.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[2].minSteps} étapes ";
+			btnLb3.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[3].minSteps} étapes ";
+			btnLb4.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[4].minSteps} étapes ";
+			btnLb5.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[5].minSteps} étapes ";
+			btnLb6.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[6].minSteps} étapes ";
+			btnLb7.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[7].minSteps} étapes ";
+			btnLb8.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[8].minSteps} étapes ";
+			btnLb9.Text = $"Labyrinthe nécessitant {GameObjectManager.mazes[9].minSteps} étapes ";
 		}
 		//montrer labyrinthe choisi
 		private void btnLb0_Click(object sender, EventArgs e)
