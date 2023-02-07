@@ -71,7 +71,15 @@ namespace labyrinthe
             {
                 for (int j = 0; j < cols; j++)
                 {
-                    this.map[i, j] = new Carre(j, i, N, null, (cols + rows - i - j - 2), Status.vide);
+
+                    // heuristique = (cols + rows - i - j - 2)
+                    //this.map[i, j] = new Carre(x, y, cout, heuristique/manhattan, Status.vide)
+                    int cout = N;
+                    int axeX = j;
+                    int axeY = i;
+                    Carre parent = null;
+                    int heuristique = cols + rows - i - j - 2;
+                    this.map[i, j] = new Carre(axeX, axeY, cout, parent, heuristique, Status.vide);
                 }
             }
             // mettre le "start" comme step=0, status="visited"
