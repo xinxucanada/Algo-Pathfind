@@ -68,7 +68,10 @@ namespace labyrinthe
 
 		private void BtnDFS_Click(object sender, EventArgs e)
 		{
-            GameObjectManager.PathDfs();
+			Task.Factory.StartNew(() =>
+			{
+				GameObjectManager.PathDfs();
+			});
 		}
 
 		private void BtClear_Click(object sender, EventArgs e)

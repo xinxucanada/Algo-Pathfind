@@ -254,7 +254,7 @@ namespace labyrinthe
 		public void dfs(int x, int y)
 		{
             // si labyrinthe est trop grand on sleep pas
-            if(cols <= 30 && rows <= 30) Thread.Sleep(1);
+            if(cols <= 300 && rows <= 300) Thread.Sleep(1);
             Carre carreCurrent = map[y, x];
             CurrentSteps = carreCurrent.step;
             // si carrée currante == sortir et le chemin est plus court que la derrière fois, on arrete et mettre le chemin dans file
