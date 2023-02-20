@@ -1,5 +1,5 @@
 # Algo Path Find
-2194517 2295847
+
 # Nom
 Générateur de labyrinthes
 # Installation
@@ -68,8 +68,6 @@ Ouvrez et executez "labyrinthe.sln" sur visual studio
 
 # Auteur
 Xin Xu;
-
-Yimin Chemen
 
 # Support
 Pour nous rejoindre, voux pouvez nous écrire à l'adresse suivante: e2194517@cmaisonneuve.qc.ca
