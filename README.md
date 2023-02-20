@@ -1,4 +1,4 @@
-# labo3Algo
+# Algo Path Find
 2194517 2295847
 # Nom
 Générateur de labyrinthes
